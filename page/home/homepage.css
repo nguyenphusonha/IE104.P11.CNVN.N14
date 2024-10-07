@@ -16,11 +16,11 @@ ul {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: rgb(67 56 202);;
-  color: white;
+  background-color: #ffffff;
+  color: black;
 }
 .main-nav a {
-  color: white;
+  color: black;
 }
 .logo {
   margin: 1rem;
@@ -43,10 +43,11 @@ ul {
   font-size: 1rem;
   padding: 0.5rem;
   flex-grow: 1;
-  background-color: white;
-  color: black;
+  background-color: ffffff;
+  color: white;
   border: 1px solid black;
   border-radius: 9999px;
+  background-color: black;
 }
 
 .search-bar div {
@@ -71,19 +72,68 @@ ul {
 .main-nav ul li a {
   font-size: 1.25rem;
   line-height: 1.75rem;
-
 }
 .main-nav ul li a:hover {
-  color:  black;
+  color: white;
   transition-duration: 500ms;
+  background-color: red;
+  border-radius: 9999px;
+  padding: 0.5rem;
 }
-
+footer {
+  background-color: black;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+}
+.footer-container {
+  max-width: 1024px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.footer-row {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  justify-content: space-around;
+  row-gap: 1rem;
+}
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+  margin: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.footer-column strong {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.footer-column .contact-icons a{
+  margin-right: 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
 @media screen and (min-width: 768px) {
   .logo a span {
     display: inline;
   }
-  .main-nav ul li  {
+  .main-nav ul li {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+  .footer-row {
+    flex-direction: row;
+    row-gap: 0.5rem;
+  }
+  .footer-row ul li {
+    margin-top: 0.5rem;
+  }
+  .footer-row .contact-icons {
+    margin-top: 0.5rem;
   }
 }
