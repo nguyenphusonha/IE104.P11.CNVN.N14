@@ -7,6 +7,15 @@ header {
   display: flex;
   flex-direction: column;
 }
+.advertisement {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding:1rem 0;
+}
+.advertisement a{
+  color: white;
+}
 ul {
   list-style-type: none;
 }
