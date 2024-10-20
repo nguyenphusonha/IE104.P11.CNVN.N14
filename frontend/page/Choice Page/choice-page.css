@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins; 
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.advertisement {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.advertisement a {
+    color: white;
+    font-weight: bold;
+    height: 48px;
+}
+
+.breadcrumb-container {
+    display: flex;
+    margin-top: 100px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-left: 70px;
+}
+
+.home {
+    color: rgb(95, 94, 94);
+    font-size: 43px;
+}
+
+.cart {
+    color: black;
+    font-size: 43px;
+}
+
+.icon-container {
+    margin-right: 70px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.search-icon,
+.cart-icon,
+.picture-profile-icon {
+    margin-right: 20px;
+}
+
+.search-icon img,
+.picture-profile-icon img,
+.cart-icon img {
+    width: 50px;
+    height: 50px;
+}
+
+.welcome {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 53px;
+    text-align: right;
+    margin-right: 40px;
+}
+
+.customer-name {
+    color: #F14848;
+}
+
+.multi-choice-product{
+    display:flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.choice-product {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-left: 400px;
+    margin-right: 400px;
+    gap: 100px;
+    position: relative;
+}
+
+
+/* Ẩn checkbox gốc */
+.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+/* Tạo khung cho checkbox */
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+}
+
+/* Tạo dấu check khi được chọn */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    bottom:25px;
+    width: 25px;
+    height: 45px;
+    border: solid red;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+/* Khung checkmark */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.product-image {
+    width:257px;
+    height: 257px;
+}
+
+.cart-product-info{
+    display:flex;
+    flex-direction: row;
+}
+
+.product-name{
+    font-size: 43px;
+    font-weight: 500;
+}
+
+.product-price{
+    font-size: 48px;
+    font-weight:lighter
+}
+
+.remove-product{
+    position: absolute;
+    top:0;
+}
+
+.quantity-btn{
+    padding: 10px 20px 10px 20px;
+    border-color: #D9D9D9;
+    border-radius: 20px;
+    border-style: none;
+    cursor:pointer;
+    font-weight: bold;
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.buy-now{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.buy-now-button{
+    background-color: #E04848;
+    color:white;
+    border-style: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 263px;
+    height:70px;
+    font-size: 30px;
+    font-weight: 400;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+.buy-now-button:hover {
+    background-color: #c0392b; /* Đổi màu nền khi hover */
+    color: #f0f0f0; /* Có thể đổi màu chữ nếu muốn */
+}
+
+
+footer {
+    width: 100%;
+    background-color: black;
+    bottom: 0px;
+    margin-top: 200px;
+  }
+  footer a {
+    color: white;
+    text-decoration: none;
+  }
+  .footer-container {
+    max-width: 1280px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    row-gap: 2rem;
+  }
+  .footer-row {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    justify-content: space-around;
+    row-gap: 1rem;
+  }
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .footer-column strong {
+    line-height: 2.25rem;
+    font-size: 1.875rem;
+  }
+  .footer-column .contact-icons a {
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .copyright {
+    opacity: 0.5;
+    font-size: 1.125rem; 
+    line-height: 1.75rem;
+  }
+  @media screen and (min-width: 768px) {
+    .logo a span {
+      display: inline;
+    }
+    .main-nav ul li {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+    .footer-row {
+      flex-direction: row;
+      row-gap: 0.5rem;
+    }
+    .footer-row ul li {
+      margin-top: 0.5rem;
+    }
+    .footer-row .contact-icons {
+      margin-top: 0.5rem;
+    }
+  }
+
+
