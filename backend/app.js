@@ -11,9 +11,16 @@ const __publicDir = __rootDir + "\\frontend\\public";
 
 app.use(express.static(__publicDir));
 
+//set view engine
 app.set("views", __viewsDir);
 app.set("view engine", "ejs");
 
+app.use("/", (req, res) => {
+  res.render("page/home/homepage.ejs");
+});
+app.use("/login", (req, res) => {
+  console.log("Hello");
+});
 console.log(__publicDir);
 app.listen(3000, () => {
   console.log("server running on 3000");
