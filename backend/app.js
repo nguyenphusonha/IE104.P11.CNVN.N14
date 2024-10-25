@@ -1,6 +1,11 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const ejs = require("ejs");
 const app = express();
+mongoose
+  .connect("mongodb://localhost:27017/N14")
+  .then((e) => console.log("Connect to mongodb success"))
+  .catch((e) => console.log(e));
 
 app.use(express.json());
 
