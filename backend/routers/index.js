@@ -1,9 +1,9 @@
-const productsRouter = require("./products.router");
-const homepageRouter = require("./homepage.router");
+const products = require("./products.router");
+const site = require("./site.router");
 
 const route = (app) => {
-  app.use("/products", productsRouter);
-  app.use("/view/homepage",homepageRouter);
+  app.use("/products", products);
+  app.use("/", site);
 };
 
 module.exports = route;

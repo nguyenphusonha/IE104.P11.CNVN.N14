@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/styles/index.css" />
+    <title>Homepage</title>
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../partials/header.ejs") %>
+
+    <main>
+      <nav class="sub-nav">
+        <ul>
+          <li class="active">
+            <a href="/"><strong>HOME</strong></a>
+          </li>
+          <li><a href="/laptop">Laptop</a></li>
+          <li><a href="/screen">Screen</a></li>
+          <li><a href="/mouse">Mouse</a></li>
+          <li><a href="/headsphone">Headsphone</a></li>
+        </ul>
+      </nav>
+      <hr />
+      <div class="product-list">
+        <h2 class="list-name">Laptop</h2>
+        <div class="products-container">
+          <% products.forEach(product => { %>
+          <%-include('../components/product-card.ejs',{product:product}) %>
+          <%}); %>
+        </div>
+        <div class="more-btn">
+          <a href="">More</a>
+        </div>
+      </div>
+      <hr />
+    </main>
+
+    <!-- footer -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-row">
+          <div class="footer-column">
+            <strong>Support</strong>
+            <ul>
+              <li>
+                <a href="#">HanHuyen, Thu Duc, HCM</a>
+              </li>
+              <li>
+                <a href="#">lapshop@gmail.com</a>
+              </li>
+              <li>
+                <a href="#">555-555-555</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <strong>Account</strong>
+            <ul>
+              <li>
+                <a href="#">My account</a>
+              </li>
+              <li>
+                <a href="#">Login / Register</a>
+              </li>
+              <li>
+                <a href="#">Cart</a>
+              </li>
+              <li>
+                <a href="#">Shop</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <strong>Quick link</strong>
+            <ul>
+              <li>
+                <a href="#">Privacy policy</a>
+              </li>
+              <li>
+                <a href="#">Term of uses</a>
+              </li>
+              <li>
+                <a href="#">FAQ</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <strong>Contact</strong>
+            <div class="contact-icons">
+              <a href=""> <i class="fa-brands fa-facebook"></i></a>
+              <a href=""> <i class="fa-brands fa-x-twitter"></i></a>
+              <a href=""> <i class="fa-brands fa-instagram"></i></a>
+              <a href=""> <i class="fa-brands fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-row">
+          <div class="footer-column">
+            <div class="copyright">
+              &copy;Copyright Rimel 2022.All right reserved
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="/scripts/product-card.js"></script>
+</html>
