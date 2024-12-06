@@ -25,7 +25,7 @@ const productsSchema = new mongoose.Schema({
     required: true,
   },
   description: [{ type: String }],
-  ifFeatured: {
+  isFeatured: {
     type: Boolean,
     default: false,
   },
