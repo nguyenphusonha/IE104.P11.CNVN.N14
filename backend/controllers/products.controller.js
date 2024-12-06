@@ -20,7 +20,20 @@ const getProduct = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+const postProducts = async (req, res) => {
+  try {
+    if (!Array.isArray(req.body.products)) {
+      return res.status(400).json({ error: "Expected an array of products." });
+    }
+    const insertProducts = req.body.products;
+    const products = await Products.insertMany(insertProducts);
+    res.status(201).json(products);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
 module.exports = {
   getProducts,
   getProduct,
+  postProducts,
 };
