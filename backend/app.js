@@ -3,13 +3,27 @@ const bodyParser = require("body-parser");
 const route = require("./routers/index");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const passport = require("passport");
 const app = express();
+const initializePassport = require("./config/passport.config");
+const session = require("express-session");
 require("dotenv/config");
-
+//config passport
+initializePassport(passport);
+//middleware
 app.use(cors());
 app.options("*", cors());
-//middleware
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(
+  session({
+    secret: process.env.SECRET,
+    saveUninitialized: false,
+    resave: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose
   .connect(process.env.CONNECTION_STRING, {

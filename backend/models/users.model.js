@@ -24,30 +24,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 8,
     },
-    role: {
-      type: String,
-      enum: ["user", "admin"],
-      default: "user",
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
-    cart: [
-      {
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Product",
-          required: true,
-        },
-        quantity: {
-          type: Number,
-          required: true,
-          min: 1,
-        },
-        price: {
-          type: Number,
-          required: true,
-          min: 0,
-        },
-      },
-    ],
   },
   {
     timestamps: true,
@@ -75,5 +55,12 @@ userSchema.methods.calculateCartTotal = function () {
     0
   );
 };
+//
+userSchema.virtual("id").get(function () {
+  return this._id;
+});
+userSchema.set("toJSON", {
+  virtuals: true,
+});
 // Export the model
 module.exports = mongoose.model("User", userSchema);

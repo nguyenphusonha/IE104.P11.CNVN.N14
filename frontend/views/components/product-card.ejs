@@ -1,8 +1,8 @@
 <div class="product-card" onclick="moveToDetailProduct('<%= product._id%> ')">
   <img
-    src="/images/products/<%= product.category %>/<%= product.imgName %>"
+    src="/images/products/<%= product.category.name %>/<%= product.imgName %>"
     alt=""
   />
   <p class="product-name"><%= product.name %></p>
-  <p class="product-price"><%= product.price %></p>
+  <p class="product-price"><%= product.price.toLocaleString('vi-VN')+"đ" %></p>
 </div>
