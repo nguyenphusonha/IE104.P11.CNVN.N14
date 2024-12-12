@@ -1,15 +1,18 @@
 const express = require("express");
 const Order = require("../models/order.model");
 const OrderItem = require("../models/order-item.model");
+const mongoose = require("mongoose");
 const router = express.Router();
 
-// router.get("/", async (req, res) => {
-//   const categoryList = await Category.find();
-//   if (!categoryList) {
-//     res.status(500).json({ sucees: false });
-//   }
-//   res.send(categoryList);
-// });
+router.get("/", async (req, res) => {
+  const orderList = await Order.find()
+    .populate("user", "username")
+    .sort({ dateOrdered: -1 });
+  if (!orderList) {
+    res.status(500).json({ sucees: false });
+  }
+  res.send(orderList);
+});
 
 router.post("/", async (req, res) => {
   const orderItemsIds = Promise.all(
@@ -49,21 +52,40 @@ router.post("/", async (req, res) => {
   res.send(order);
 });
 
-// router.delete("/:id", (req, res) => {
-//   Category.findByIdAndDelete(req.params.id)
-//     .then((category) => {
-//       if (category) {
-//         return res
-//           .status(200)
-//           .json({ sucees: true, message: "The category was deteted" });
-//       } else {
-//         return res
-//           .status(404)
-//           .json({ sucees: false, message: "No category with id" });
-//       }
-//     })
-//     .catch((err) => {
-//       return res.status(400).json({ sucees: false, error: err });
-//     });
-// });
+router.delete("/:id", (req, res) => {
+  if (!mongoose.isValidObjectId(req.params.id)) {
+    res.status(400).send("Invalid order id");
+  }
+  Order.findByIdAndDelete(req.params.id)
+    .then(async (order) => {
+      if (order) {
+        await order.orderItems.map(async (orderItem) => {
+          await OrderItem.findByIdAndDelete(orderItem);
+        });
+        return res
+          .status(200)
+          .json({ success: true, message: "The order was deteted" });
+      } else {
+        return res
+          .status(404)
+          .json({ success: false, message: "No order with id" });
+      }
+    })
+    .catch((err) => {
+      return res.status(400).json({ success: false, error: err });
+    });
+});
+router.patch("/:id", async (req, res) => {
+  if (!mongoose.isValidObjectId(req.params.id)) {
+    res.status(400).send("Invalid order id");
+  }
+  const updates = { ...req.body };
+  const updatedOrder = await Order.findByIdAndUpdate(req.params.id, updates, {
+    new: true,
+    runValidators: true,
+  }).catch((err) => {
+    return res.status(400).json({ sucees: false, error: err });
+  });
+  res.status(200).send(updatedOrder);
+});
 module.exports = router;

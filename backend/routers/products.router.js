@@ -62,15 +62,15 @@ router.delete("/:id", (req, res) => {
       if (product) {
         return res
           .status(200)
-          .json({ sucees: true, message: "The product was deteted" });
+          .json({ success: true, message: "The product was deteted" });
       } else {
         return res
           .status(404)
-          .json({ sucees: false, message: "No product with id" });
+          .json({ success: false, message: "No product with id" });
       }
     })
     .catch((err) => {
-      return res.status(400).json({ sucees: false, error: err });
+      return res.status(400).json({ success: false, error: err });
     });
 });
 
@@ -89,7 +89,7 @@ router.patch("/:id", async (req, res) => {
     updates,
     { new: true, runValidators: true }
   ).catch((err) => {
-    return res.status(400).json({ sucees: false, error: err });
+    return res.status(400).json({ success: false, error: err });
   });
   res.status(200).send(updatedProduct);
 });
