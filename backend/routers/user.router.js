@@ -33,7 +33,7 @@ router.post(
   "/login",
   passport.authenticate("local", {
     failureRedirect: "/",
-    successRedirect: "/",
+    successRedirect: "/api/av1/user/info",
   })
 );
 //info
@@ -50,9 +50,14 @@ router.post("/logout", (req, res) => {
     if (e) {
       return next(e);
     }
-    res.send({ messsage: "logout sucess full" });
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ message: "Could not log out" });
+      }
+      res.clearCookie("connect.sid");
+      res.json({ message: "Session destroyed. Logged out successfully!" });
+    });
   });
 });
-
 
 module.exports = router;
