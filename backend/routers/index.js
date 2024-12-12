@@ -4,6 +4,10 @@ const user = require("./user.router");
 const site = require("./site.router");
 const order = require("./order.router");
 const cart = require("./cart.router");
+const {
+  checkAuthenticated,
+  checkNotAuthenticated,
+} = require("../middleware/authentication");
 require("dotenv/config");
 const api = process.env.API_URL;
 const route = (app) => {
@@ -11,7 +15,7 @@ const route = (app) => {
   app.use(`${api}/product`, product);
   app.use(`${api}/user`, user);
   app.use(`${api}/order`, order);
-  app.use(`${api}/cart`, cart);
+  app.use(`${api}/cart`,checkAuthenticated, cart);
   app.use("/", site);
 };
 

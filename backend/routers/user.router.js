@@ -1,6 +1,10 @@
 const express = require("express");
 const User = require("../models/users.model");
 const passport = require("passport");
+const {
+  checkAuthenticated,
+  checkNotAuthenticated,
+} = require("../middleware/authentication");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -31,13 +35,14 @@ router.post("/", async (req, res) => {
 //login
 router.post(
   "/login",
+  checkNotAuthenticated,
   passport.authenticate("local", {
     failureRedirect: "/",
     successRedirect: "/api/av1/user/info",
   })
 );
 //info
-router.get("/info", (req, res) => {
+router.get("/info", checkAuthenticated, (req, res) => {
   const user = req.user;
   if (!user) {
     res.json({ message: "May chua dang nhap" });
@@ -45,7 +50,7 @@ router.get("/info", (req, res) => {
   res.json(user);
 });
 //logout
-router.post("/logout", (req, res) => {
+router.post("/logout", checkAuthenticated, (req, res) => {
   req.logOut((e) => {
     if (e) {
       return next(e);
