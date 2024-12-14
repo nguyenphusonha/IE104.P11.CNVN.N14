@@ -1,6 +1,23 @@
 const express = require("express");
+const Product = require("../models/products.model");
 const router = express.Router();
-
+router.get("/", async (req, res) => {
+  if (!req.session.cart || req.session.cart.length === 0) {
+    return res.status(400).json({ message: "Cart is empty" });
+  }
+  itemsInCart = await Promise.all(
+    req.session.cart.map(async (item) => {
+      const product = await Product.findById(item.productId);
+      const totalPrice = product.price * item.quantity;
+      return {
+        product: product,
+        quantity: item.quantity,
+        totalPrice: totalPrice,
+      };
+    })
+  );
+  res.status(200).json(itemsInCart);
+});
 router.post("/", (req, res) => {
   const { productId, quantity } = req.body;
 

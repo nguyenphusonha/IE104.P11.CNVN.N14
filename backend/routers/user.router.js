@@ -10,13 +10,16 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const userList = await User.find().select("-password");
   if (!userList) {
-    res.status(500).json({ sucees: false });
+    res.status(500).json({ success: false });
   }
   res.send(userList);
 });
 
 router.post("/", async (req, res) => {
   try {
+    if (await User.findOne({ email: req.body.email })) {
+      throw new Error("This email is already registered.");
+    }
     let user = new User({
       username: req.body.username,
       email: req.body.email,
@@ -27,9 +30,15 @@ router.post("/", async (req, res) => {
     if (!user) {
       return res.status(400).send("The user cannot created");
     }
-    res.send(user);
+    res.status(200).json({ success: true, user: user });
   } catch (error) {
-    res.status(400).send(error);
+    if (
+      error.message ===
+      "User validation failed: email: Please provide a valid email address"
+    ) {
+      error.message = "Invalid email";
+    }
+    res.status(400).json({ success: false, message: error.message });
   }
 });
 //login
@@ -37,8 +46,8 @@ router.post(
   "/login",
   checkNotAuthenticated,
   passport.authenticate("local", {
-    failureRedirect: "/",
-    successRedirect: "/api/av1/user/info",
+    failureRedirect: "/login",
+    successRedirect: "/",
   })
 );
 //info
@@ -60,7 +69,7 @@ router.post("/logout", checkAuthenticated, (req, res) => {
         return res.status(500).json({ message: "Could not log out" });
       }
       res.clearCookie("connect.sid");
-      res.json({ message: "Session destroyed. Logged out successfully!" });
+      res.redirect("/login");
     });
   });
 });

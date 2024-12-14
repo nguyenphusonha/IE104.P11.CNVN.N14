@@ -3,70 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/detailproduct.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="/styles/index.css" />
-    <title>Homepage</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Product Page</title>
   </head>
   <body>
     <header><%- include("../partials/header.ejs") %></header>
+
     <main>
       <%- include("../partials/sub-nav.ejs") %>
-      <hr />
-      <div class="product-list">
-        <h2 class="list-name">Featured</h2>
-        <div class="products-container">
-          <% products.filter(product=>product.isFeatured===true).slice(0,5).forEach(product => { %>
-          <%-include('../components/product-card.ejs',{product:product}) %>
-          <%}); %>
+      <div class="breadcrumb-container">
+        <nav class="breadcrumb">
+          <a class="home" href="#">Home</a> /
+          <a class="phone" href="#"><strong>Phone</strong></a> /
+          <a class="product-name">MacBook Pro 14 inch 2021</a>
+        </nav>
+      </div>
+      <div class="product-container">
+        <div class="product-images">
+          <img
+            src="/images/products/<%= product.category.name %>/<%= product.imgName %>"
+            alt=""
+          />
         </div>
-        <div class="more-btn">
-          <a href="">More</a>
+
+        <div class="product-info">
+          <h2><%= product.name %></h2>
+          <p class="price">
+            <%= product.price.toLocaleString('vi-VN') +" VND" %>
+          </p>
+          <p class="brand"><b>Brand: </b><%= product.brand %></p>
+          <% for( const key in product.description ) { %>
+          <p><b><%= key %></b>: <%= product.description[key] %></p>
+          <% } %>
+
+          <div class="buttons">
+            <button class="buy-now">Buy now</button>
+            <button class="add-to-cart">Add to cart</button>
+          </div>
         </div>
       </div>
-      <hr>
-      <hr />
-      <div class="product-list">
-        <h2 class="list-name">Laptop</h2>
-        <div class="products-container">
-          <% products.filter(product=>product.category.name==='laptop').slice(0,5).forEach(product => { %>
-          <%-include('../components/product-card.ejs',{product:product}) %>
-          <%}); %>
-        </div>
-        <div class="more-btn">
-          <a href="">More</a>
-        </div>
-      </div>
-      <hr>
-      <div class="product-list">
-        <h2 class="list-name">Keyboard</h2>
-        <div class="products-container">
-          <% products.filter(product=>product.category.name==='keyboard').slice(0,5).forEach(product => { %>
-          <%-include('../components/product-card.ejs',{product:product}) %>
-          <%}); %>
-        </div>
-        <div class="more-btn">
-          <a href="">More</a>
-        </div>
-      </div>
-      <hr />
-      <div class="product-list">
-        <h2 class="list-name">Mouse</h2>
-        <div class="products-container">
-          <% products.filter(product=>product.category.name==='mouse').slice(0,5).forEach(product => { %>
-          <%-include('../components/product-card.ejs',{product:product}) %>
-          <%}); %>
-        </div>
-        <div class="more-btn">
-          <a href="">More</a>
-        </div>
-      </div>
-      <hr />
     </main>
 
-    <!-- footer -->
     <footer>
       <div class="footer-container">
         <div class="footer-row">
@@ -135,5 +122,4 @@
       </div>
     </footer>
   </body>
-  <script src="/scripts/product-card.js"></script>
 </html>

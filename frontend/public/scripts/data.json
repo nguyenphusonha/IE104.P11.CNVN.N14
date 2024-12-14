@@ -6,12 +6,9 @@
       "imgName": "asus-vivobook-go-15-e1504fa-r5-nj776w-thumb-600x600.jpg",
       "category": "6752ff21fc86289904a6f379",
       "brand": "asus",
-      "description": [
-        "Ram:8gb",
-        "CPU:AMD Ryzen 5 - 7430U",
-        "Displays:15.6",
-        "OS:Windows 11 Home SL"
-      ],
+      "description": {
+        "Ram":"8GB"
+      },
       "isFeatured": true
     },
     {

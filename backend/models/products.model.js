@@ -24,7 +24,10 @@ const productsSchema = new mongoose.Schema({
     ref: "Category",
     required: true,
   },
-  description: [{ type: String }],
+  description: {
+    type: Map,
+    of: String,
+  },
   isFeatured: {
     type: Boolean,
     default: false,

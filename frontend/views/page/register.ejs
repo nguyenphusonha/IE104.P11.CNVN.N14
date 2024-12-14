@@ -7,66 +7,46 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="/styles/index.css" />
-    <title>Homepage</title>
+    <link rel="stylesheet" href="styles/register.css" />
+    <title>Signup</title>
   </head>
   <body>
     <header><%- include("../partials/header.ejs") %></header>
     <main>
       <%- include("../partials/sub-nav.ejs") %>
-      <hr />
-      <div class="product-list">
-        <h2 class="list-name">Featured</h2>
-        <div class="products-container">
-          <% products.filter(product=>product.isFeatured===true).slice(0,5).forEach(product => { %>
-          <%-include('../components/product-card.ejs',{product:product}) %>
-          <%}); %>
-        </div>
-        <div class="more-btn">
-          <a href="">More</a>
-        </div>
+      <div class="form-container">
+        <h2>Create a New Account</h2>
+        <form id="registerForm">
+          <div class="input-field">
+            <input type="text" placeholder="User name" id="username" required />
+          </div>
+          <div class="input-field">
+            <input type="email" placeholder="Email" id="email" required />
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+            <span class="eye-icon" id="showPassword-btn">&#128065;</span>
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              required
+            />
+            <span class="eye-icon" id="showConfirmPassword-btn">&#128065;</span>
+          </div>
+          <button type="submit" class="submit-btn">Next</button>
+        </form>
       </div>
-      <hr>
-      <hr />
-      <div class="product-list">
-        <h2 class="list-name">Laptop</h2>
-        <div class="products-container">
-          <% products.filter(product=>product.category.name==='laptop').slice(0,5).forEach(product => { %>
-          <%-include('../components/product-card.ejs',{product:product}) %>
-          <%}); %>
-        </div>
-        <div class="more-btn">
-          <a href="">More</a>
-        </div>
-      </div>
-      <hr>
-      <div class="product-list">
-        <h2 class="list-name">Keyboard</h2>
-        <div class="products-container">
-          <% products.filter(product=>product.category.name==='keyboard').slice(0,5).forEach(product => { %>
-          <%-include('../components/product-card.ejs',{product:product}) %>
-          <%}); %>
-        </div>
-        <div class="more-btn">
-          <a href="">More</a>
-        </div>
-      </div>
-      <hr />
-      <div class="product-list">
-        <h2 class="list-name">Mouse</h2>
-        <div class="products-container">
-          <% products.filter(product=>product.category.name==='mouse').slice(0,5).forEach(product => { %>
-          <%-include('../components/product-card.ejs',{product:product}) %>
-          <%}); %>
-        </div>
-        <div class="more-btn">
-          <a href="">More</a>
-        </div>
-      </div>
-      <hr />
     </main>
 
-    <!-- footer -->
+    <!-- Footer -->
     <footer>
       <div class="footer-container">
         <div class="footer-row">
@@ -97,6 +77,9 @@
                 <a href="#">Cart</a>
               </li>
               <li>
+                <a href="#">Whishlist</a>
+              </li>
+              <li>
                 <a href="#">Shop</a>
               </li>
             </ul>
@@ -112,6 +95,9 @@
               </li>
               <li>
                 <a href="#">FAQ</a>
+              </li>
+              <li>
+                <a href="#">Contact</a>
               </li>
             </ul>
           </div>
@@ -135,5 +121,5 @@
       </div>
     </footer>
   </body>
-  <script src="/scripts/product-card.js"></script>
+  <script src="/scripts/register.js"></script>
 </html>
