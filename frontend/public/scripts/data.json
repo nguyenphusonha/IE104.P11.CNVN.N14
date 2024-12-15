@@ -10,30 +10,6 @@
         "Ram":"8GB"
       },
       "isFeatured": true
-    },
-    {
-      "name": "dell-inspiron-15-3520-i5-n5i5052w1",
-      "price": 16490000,
-      "imgName": "dell-inspiron-15-3520-i5-n5i5052w1-thumb-600x600.jpg",
-      "brand": "dell",
-      "category": "laptop",
-      "description": ""
-    },
-    {
-      "name": "hp-15-fd0234tu-i5-9q969pa",
-      "price": 16290000,
-      "imgName": "hp-15-fd0234tu-i5-9q969pa-thumb-1-600x600.jpg",
-      "brand": "hp",
-      "category": "laptop",
-      "description": ""
-    },
-    {
-      "name": "lenovo-ideapad-slim-3-15iah8-i5-83er00evn",
-      "price": 14290000,
-      "imgName": "lenovo-ideapad-slim-3-15iah8-i5-83er00evn-thumb-600x600.jpg",
-      "brand": "lenovo",
-      "category": "laptop",
-      "description": ""
     }
   ]
 }
